@@ -1,5 +1,6 @@
 #include <HashWord.h>
 #include <iostream>
+
 unsigned long long int HashWord::hash()
 {
     const char *word = this->word;

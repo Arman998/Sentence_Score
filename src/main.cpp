@@ -2,7 +2,7 @@
 #include <string>
 #include <Matrix.h>
 #include <HashWord.h>
-#include <FileReader.h>
+#include <DbCreator.h>
 #include <vector>
 
 int main()
@@ -13,8 +13,8 @@ int main()
        the hash of the word and transfers the result to the
        inspect function . the inspect function chacks the existance
        of recurring  numbers and validates that*/
-    FileReader read; 
-    read.rWord(); 
+    DbCreator cr; 
+    cr.rWord(); 
     return 0;
 } 
 
