@@ -1,6 +1,6 @@
 #pragma once
+typedef unsigned long long int long_int;
 #include <string>
-
 class HashWord
 {
     public:
@@ -10,5 +10,5 @@ class HashWord
             word = w;
         }
         ~HashWord() = default;
-        unsigned long long int hash();
+        long_int hash();
 };

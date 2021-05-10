@@ -1,10 +1,10 @@
 #include <HashWord.h>
 #include <iostream>
 
-unsigned long long int HashWord::hash()
+long_int HashWord::hash()
 {
     const char *word = this->word;
-    unsigned long long int hash = 5381;
+    long_int hash = 5381;
     int it{};
     if (word != nullptr) {
         while ((it = *word++)) {

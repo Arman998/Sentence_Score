@@ -1,14 +1,15 @@
 #pragma once
+typedef unsigned long long int long_int;
 #include <iostream>
 #include <map>
 #include <vector>
-
 class DbCreator
 {
 	public:
 		std::string readWord;
 		DbCreator(){}
 		~DbCreator() = default;
-		std::map<unsigned long long int,std::vector<unsigned long long int>> rWord();
-		void printMap(std::map<unsigned long long int,std::vector<unsigned long long int>> mp);
+		std::map<long_int,std::vector<long_int>> rWord();
+		void splitStringIntoVector();
+		void printMap(std::map<long_int,std::vector<long_int>> mp, long_int hash);
 };

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Matrix.h>
-std::vector<unsigned long long int> Matrix::bin(unsigned long long int hash)
+std::vector<long_int> Matrix::bin(long_int hash)
 {
 	int binNumber = 0;
 	int count = 0;
@@ -13,7 +13,7 @@ std::vector<unsigned long long int> Matrix::bin(unsigned long long int hash)
 	}
 	return binMatrix;
 }
-void Matrix::insert(unsigned long long int hash, int count)
+void Matrix::insert(long_int hash, int count)
 {
 	binMatrix[count] = hash;
 }
@@ -27,11 +27,11 @@ void Matrix::inspect()
 		}
 	}
 }
-void Matrix::setbinMatrix(std::vector<unsigned long long int> BinMatrix)
+void Matrix::setbinMatrix(std::vector<long_int> BinMatrix)
 {
 	binMatrix = BinMatrix;
 }
-std::vector<unsigned long long int> Matrix::getbinMatrix()
+std::vector<long_int> Matrix::getbinMatrix()
 {
 	return this->binMatrix;
 }

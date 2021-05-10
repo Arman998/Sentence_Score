@@ -1,4 +1,5 @@
 #pragma once
+typedef unsigned long long int long_int;
 #include <iostream>
 #include <vector>
 #define vecSize 100
@@ -7,12 +8,12 @@ class Matrix
 	public:
 		Matrix(){}
 		~Matrix() = default;
-		std::vector<unsigned long long int> bin(unsigned long long int hash);
+		std::vector<long_int> bin(long_int hash);
 		void inspect();
-		void insert (unsigned long long int hash, int count);
-		void setbinMatrix(std::vector<unsigned long long int> BinMatrix);
-		std::vector<unsigned long long int> getbinMatrix();
+		void insert (long_int hash, int count);
+		void setbinMatrix(std::vector<long_int> BinMatrix);
+		std::vector<long_int> getbinMatrix();
 	private:
-		std::vector<unsigned long long int> binMatrix 
-		{std::vector<unsigned long long int>(100,0)};
+		std::vector<long_int> binMatrix 
+		{std::vector<long_int>(100,0)};
 };
