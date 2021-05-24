@@ -10,34 +10,34 @@
 std::map<long_int,std::vector<long_int>> DbCreator::rWord()
 {
 	std::map<long_int,std::vector<long_int>> mp;
+	std::vector<long_int> insHash;
 	std::string line = "";
-	int count = 0;
 	Matrix ins;
 	Matrix hashbin;
 	std::ifstream db("../data_source/DBtxt100.txt");
 	if (db.is_open()) {
 		while (getline (db,line)) {
 			HashWord obj(line.c_str());
-			ins.insert(obj.hash(), count);
-			++count;
+			insHash.push_back(obj.hash());
 			mp[obj.hash()] = hashbin.bin(obj.hash());
+			std::cout<<line<<"--> "<<obj.hash()<<std::endl;
 		}
 		db.close();
 	} else {
 		std::cout << "Unable to open file";
 	}
-	ins.inspect();
+	ins.inspect(insHash);
 	return mp;
 }
 
 void DbCreator::splitStringIntoVector()
 {
 	std::vector<std::string> lines;
-	std::vector<long_int> resultVector(100,0);
+	std::string sentence = "";
+ std::vector<long_int> resultVector(100,0);
 	DbCreator cr; 
 	std::map<long_int,std::vector<long_int>> vMap;
 	vMap = cr.rWord();
-	std::string sentence = "";
 	int wordsCount = 0;
 	while (wordsCount < 500) {
 		std::cin>> sentence;
@@ -90,8 +90,8 @@ std::vector<long_int> DbCreator::sumOfBinVector(std::vector<long_int> foundVecto
 
 std::vector<long_int> DbCreator::searchHash(std::map<long_int,std::vector<long_int>> mp,long_int hash)
 {
-	std::vector<long_int> binaryVector(0);
 	std::vector<long_int> resVector(100,0);
+	std::vector<long_int> binaryVector(0);
 	long_int vectorelement = 0;
 	std::map<long_int ,std::vector<long_int>>::iterator itr;
 	for (itr = mp.begin(); itr != mp.end(); ++itr) {
@@ -100,9 +100,11 @@ std::vector<long_int> DbCreator::searchHash(std::map<long_int,std::vector<long_i
 				vectorelement = *it2;
 				binaryVector.push_back(vectorelement);
 			}
+
 		}
-		resVector = sumOfBinVector(binaryVector);
 	}
+			resVector = sumOfBinVector(binaryVector);
+
 	return resVector;
 }
 

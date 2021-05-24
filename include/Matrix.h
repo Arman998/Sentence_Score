@@ -9,8 +9,7 @@ class Matrix
 		Matrix(){}
 		~Matrix() = default;
 		std::vector<long_int> bin(long_int hash);
-		void inspect();
-		void insert (long_int hash, int count);
+		void inspect(std::vector<long_int> inspectElement);
 		void setbinMatrix(std::vector<long_int> BinMatrix);
 		std::vector<long_int> getbinMatrix();
 	private:

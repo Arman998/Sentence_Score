@@ -5,26 +5,25 @@ std::vector<long_int> Matrix::bin(long_int hash)
 {
 	int binNumber = 0;
 	int count = 0;
-	while (hash > 0) {
+	for (unsigned int i = 0; i < binMatrix.size(); ++i) {
+	binMatrix[i] = 0;	
+	}
+	std::cout<<std::endl;
+	while (hash > 0) {	
+		++count;
 		binNumber = hash % 2;
 		hash = hash / 2; 
 		binMatrix[vecSize-count] = binNumber;
-		++count;
 	}
 	return binMatrix;
 }
 
-void Matrix::insert(long_int hash, int count)
+void Matrix::inspect(std::vector<long_int> inspectElement)
 {
-	binMatrix[count] = hash;
-}
-
-void Matrix::inspect()
-{
-	for (unsigned int i = 0; i < binMatrix.size(); ++i) {
-		for (unsigned int j = i+1; j < binMatrix.size(); ++j) {
-			if (binMatrix[i] == binMatrix[j]) {
-				std::cout << "i = " << i <<" j = "<<j<<std::endl;
+	for (unsigned int i = 0; i < inspectElement.size(); ++i) {
+		for (unsigned int j = i+1; j < inspectElement.size(); ++j) {
+			if (inspectElement[i] == inspectElement[j]) {
+				std::cout << "i = " << i + 1 <<" j = "<< j + 1 <<std::endl;
 			}
 		}
 	}
