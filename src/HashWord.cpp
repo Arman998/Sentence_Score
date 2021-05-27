@@ -1,6 +1,6 @@
 #include <HashWord.h>
 #include <iostream>
-
+#include <cctype>
 long_int HashWord::hash()
 {
 	const char *word = this->word;
@@ -8,7 +8,7 @@ long_int HashWord::hash()
 	int it{};
 	if (word != nullptr) {
 		while ((it = *word++)) {
-			hash = ((hash << 5) + hash) + it; // hash * 33 + c
+			hash = ((hash << 5) + hash) +tolower(it); // hash * 33 + c
 		}
 	} else {
 		std::cout << "Memory allocation failed: "<< std::endl;
