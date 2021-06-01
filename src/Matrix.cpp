@@ -13,7 +13,7 @@ std::vector<long_int> Matrix::bin(long_int hash)
 		++count;
 		binNumber = hash % 2;
 		hash = hash / 2; 
-		binMatrix[vecSize-count] = binNumber;
+		binMatrix[binaryVectorSize - count] = binNumber;
 	}
 	return binMatrix;
 }

@@ -2,7 +2,7 @@
 typedef unsigned long long int long_int;
 #include <iostream>
 #include <vector>
-#define vecSize 100
+#define binaryVectorSize 100
 class Matrix
 {
 	public:
@@ -14,5 +14,5 @@ class Matrix
 		std::vector<long_int> getbinMatrix();
 	private:
 		std::vector<long_int> binMatrix 
-		{std::vector<long_int>(100,0)};
+		{std::vector<long_int>(binaryVectorSize,0)};
 };
