@@ -5,10 +5,9 @@ std::vector<long_int> Matrix::bin(long_int hash)
 {
 	int binNumber = 0;
 	int count = 0;
-	for (unsigned int i = 0; i < binMatrix.size(); ++i) {
+	for (unsigned int i = 0; i < binMatrix.size()-1; ++i) {
 		binMatrix[i] = 0;	
 	}
-//	std::cout<<std::endl;
 	while (hash > 0) {	
 		++count;
 		binNumber = hash % 2;

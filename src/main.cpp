@@ -2,12 +2,20 @@
 #include <Matrix.h>
 #include <HashWord.h>
 #include <DbCreator.h>
+#include <fstream>
+#include <Helper.h>
 
-int main()
+
+
+/*inline bool exists(const char* filename)
 {
-
-	DbCreator obj;
-	obj.splitStringIntoVector();
+	std::ifstream file(filename);
+	return file.good();
+}
+*/
+int main(int argc, char* argv[])
+{
+handleOptions(argc, argv);
 	return 0;
 } 
 

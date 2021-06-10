@@ -7,6 +7,7 @@
 #include <Matrix.h>
 #include <iterator>
 #include <DbCreator.h>
+static std::vector<long_int> sumVector(binaryVectorSize,0);
 std::map<long_int,std::vector<long_int>> DbCreator::rWord(std::string path)
 {
 	std::string pathDictionary = path;
@@ -21,17 +22,17 @@ std::map<long_int,std::vector<long_int>> DbCreator::rWord(std::string path)
 			HashWord obj(line.c_str());
 			insHash.push_back(obj.hash());
 			mp[obj.hash()] = hashbin.bin(obj.hash());
-	//		std::cout<<line<<"--> "<<obj.hash()<<std::endl;
+		//	std::cout<<line<<"--> "<<obj.hash()<<std::endl;
 		}
 		db.close();
 	} else {
-		std::cout << "Unable to open file";
+		std::cout << "Unable to open file"<<std::endl;
 	}
 	ins.inspect(insHash);
 	return mp;
 }
 
-void DbCreator::inspectWord(std::vector<std::string> line,
+std::vector<long_int> DbCreator::inspectWord(std::vector<std::string> line,
 		std::map<long_int,std::vector<long_int>> hashMap)
 {
 	std::string space = " ";
@@ -66,15 +67,15 @@ void DbCreator::inspectWord(std::vector<std::string> line,
 			}
 		}
 	}
-	for (unsigned int i = 0; i <= resultVector.size() - 1; ++i) {
-		std::cout<<resultVector[i];
+	for (unsigned int i = 0; i <= sumVector.size()-1; ++i ) {
+		sumVector[i] = 0;
 	}
-	std::cout<<std::endl;
+	return resultVector;
 }
 
-bool DbCreator::inspectStopWrod(std::string sentenceWord) {
+bool DbCreator::inspectStopWrod(std::string sentenceWord,std::string stopWDicpath) {
 	bool isfoundstopWord = false;
-	std::string pathStopDic = "./data_source/StopWords.txt:";
+	std::string pathStopDic = stopWDicpath;
 	std::map<long_int,std::vector<long_int>> vMap;
 	DbCreator cr; 
 	vMap = cr.rWord(pathStopDic);
@@ -89,13 +90,13 @@ bool DbCreator::inspectStopWrod(std::string sentenceWord) {
 	return isfoundstopWord;
 }
 
-void DbCreator::splitStringIntoVector()
+std::vector<long_int> DbCreator::splitStringIntoVector(std::string dicPath,
+std::string stopWDicpath)
 {
-	std::vector<long_int> emptyEntry (binaryVectorSize,0);
+	std::vector<long_int> resultVector(binaryVectorSize,0);
 	std::vector<std::string> lines;
 	std::string sentence = "";
-	std::string pathDic = "./data_source/DBtxt100.txt";
-	std::vector<long_int> resultVector(binaryVectorSize,0);
+	std::string pathDic = dicPath;
 	DbCreator cr; 
 	std::map<long_int,std::vector<long_int>> vMap;
 	vMap = cr.rWord(pathDic);
@@ -106,27 +107,62 @@ void DbCreator::splitStringIntoVector()
 		if (sentence == ".") {
 			break;
 		}
-		if (!inspectStopWrod(sentence)){
-		++stopWordsCount;
-		lines.push_back(sentence);
+		if (!inspectStopWrod(sentence ,stopWDicpath)){
+			++stopWordsCount;
+			lines.push_back(sentence);
 		}		
 		++wordsCount;
 	}
 	if ( wordsCount > 0 && stopWordsCount > 0) {
-		inspectWord(lines,vMap);
-	} else {
-		for (auto i :emptyEntry) {
-			std::cout<<i;
-		}
+		resultVector = inspectWord(lines,vMap);
+	}
+
+	std::cout<<std::endl;
+
+	for (unsigned int i = 0; i <= resultVector.size() - 1; ++i) {
+		std::cout<<resultVector[i];
 	}
 	std::cout<<std::endl;
+	return resultVector;
 }
 
+std::vector<long_int> DbCreator::workingWithTests(std::string dicPath,
+std::string stopWDicpath, std::vector<std::string> testline)
+{
+	std::vector<long_int> resultVector(binaryVectorSize,0);
+	std::vector<std::string> lines;
+	std::string pathDic = dicPath;
+	DbCreator cr; 
+	std::map<long_int,std::vector<long_int>> vMap;
+	vMap = cr.rWord(pathDic);
+	unsigned int wordsCount = 0;
+	int stopWordsCount = 0;
+	while (wordsCount < testline.size()-1) {
+		if (testline[wordsCount] == ".") {
+			break;
+		}
+		if (!inspectStopWrod(testline[wordsCount] ,stopWDicpath)){
+			++stopWordsCount;
+			lines.push_back(testline[wordsCount]);
+		}		
+		++wordsCount;
+	}
+	if ( wordsCount > 0 && stopWordsCount > 0) {
+		resultVector = inspectWord(lines,vMap);
+	}
+
+	std::cout<<std::endl;
+
+	for (unsigned int i = 0; i <= resultVector.size() - 1; ++i) {
+		std::cout<<resultVector[i];
+	}
+	std::cout<<std::endl;
+	return resultVector;
+}
 std::vector<long_int> DbCreator::sumOfBinVector(std::vector<long_int> foundVector)
 {
 	int binarySum = 0;
 	int leftover = 0;
-	static std::vector<long_int> sumVector(binaryVectorSize,0);
 	for (int i = foundVector.size() - 1; i >= 0; --i) {
 		binarySum = foundVector[i] + sumVector[i];
 		switch(binarySum + leftover) {
