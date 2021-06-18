@@ -1,21 +1,12 @@
 #include <iostream>
 #include <Matrix.h>
 #include <HashWord.h>
-#include <DbCreator.h>
-#include <fstream>
-#include <Helper.h>
-
-
-
-/*inline bool exists(const char* filename)
-{
-	std::ifstream file(filename);
-	return file.good();
-}
-*/
+#include "DbCreator.h"
+#include "Helper.h"
 int main(int argc, char* argv[])
 {
-handleOptions(argc, argv);
-	return 0;
-} 
 
+	handleOptions(argc,argv);
+//	std::cout << "Hello !" << std::endl;
+	return 0;
+}

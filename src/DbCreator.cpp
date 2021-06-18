@@ -1,12 +1,14 @@
+
+#include <DbCreator.h>
+#include <HashWord.h>
+#include <Matrix.h>
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include <DbCreator.h>
-#include <HashWord.h>
 #include <iomanip>
-#include <Matrix.h>
 #include <iterator>
-#include <DbCreator.h>
+
 static std::vector<long_int> sumVector(binaryVectorSize,0);
 std::map<long_int,std::vector<long_int>> DbCreator::rWord(std::string path)
 {

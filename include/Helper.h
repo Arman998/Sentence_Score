@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-void test1(int argc ,char* argv[]);
+//void test1(int argc ,char* argv[]);
 void help();
 inline bool exists(const char* filename);
 void handleOptions(int argc, char* argv[]);
