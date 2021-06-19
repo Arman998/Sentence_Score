@@ -2,34 +2,24 @@
 #include <DbCreator.h>
 #include <fstream>
 
-/*void test1(int argc, char* argv[]) {
-	std::vector<long_int> stopWord(100,0);
-	std::vector<long_int> result(100,0);
-	std::vector<std::string> testline {"as","at","yet","you","."};
-	DbCreator obj;
-	std::string dicWWord = argv[2];
-	std::string stopWWord = argv[3];
-	result = obj.workingWithTests(dicWWord,stopWWord,testline);
-	bool isNotEqual = true;
-	for(unsigned int i = 0; i < stopWord.size()-1; ++i) {
-		if (stopWord[i] != result[i]) {
-			isNotEqual = false;
-			break;
-		}
-	}
-	if (isNotEqual) {
-		std::cout<< "## PASS ##"<< std::endl;
-	} else {
-		std::cout<< "## FAIL ##"<< std::endl;
-	}
-}*/
-
 void help()
 { 
-	std::cout<<"## HELP ##"<<std::endl;
-	std::cout<<"## dictionary_path ##"<<std::endl;
-	std::cout<<"## stopWordsDic_path ##"<<std::endl;
-	std::cout<<"## sentence_quantity ##"<<std::endl;
+	std::cout<<"## HELP"<<std::endl;
+	std::cout<<"## usage: " <<std::endl;
+	std::cout<<"##  ./sentence-score dictionary_path <path_to_dictionary> "
+        << "stopWordsDic_path <path_to_stop_word_dictionary> "
+        << "sentence_quantity <count of sentences>" <<std::endl;
+
+
+	std::cout<<std::endl;
+	std::cout<<"## The followng options are mandatory options "
+        <<"and must be specified with their values: " <<std::endl;
+	std::cout<<"## dictionary_path "
+        <<"- The option takes dictionary path as a value"<<std::endl;
+	std::cout<<"## stopWordsDic_path "
+        <<"- The option takes the path of the stop word dictionary as a value "<<std::endl;
+	std::cout<<"## sentence_quantity "
+        <<"- The option takes an integer value as a count of the sentences that must be provided "<<std::endl;
 }
 
 inline bool exists(const char* filename)

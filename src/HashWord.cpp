@@ -1,6 +1,8 @@
-#include <HashWord.h>
 #include <iostream>
 #include <cctype>
+#include <HashWord.h>
+
+/*the function performs word hashing*/
 long_int HashWord::hash()
 {
 	const char *word = this->word;

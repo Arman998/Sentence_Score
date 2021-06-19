@@ -10,7 +10,7 @@ void test1(int argc, char* argv[]) {
 	DbCreator obj;
 	std::string dicWWord = "./data_source/DBtxt100.txt";
 	std::string stopWWord = "./data_source/StopWords.txt";
-	result = obj.workingWithTests(dicWWord,stopWWord,testline);
+	result = obj.testSplitStringFunctionality(dicWWord,stopWWord,testline);
 	bool isNotEqual = true;
 	for(unsigned int i = 0; i < stopWord.size()-1; ++i) {
 		if (stopWord[i] != result[i]) {

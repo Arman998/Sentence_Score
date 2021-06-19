@@ -14,7 +14,7 @@
 #COMPILE = $(CC) $(DEPFLAGS) $(CFLAGS) -I $(INCLUDE) -c
 #TESTPATH = ./Tests/TestStopWord/Tmp/
 #SO = libSentanceScore.so
-#EXE = run 
+#EXE = sentence-score 
 #.PHONY: all
 #all: $(EXE)
 
@@ -40,7 +40,7 @@
 #$(DEPFILES):
 #include $(wildcard $(DEPFILES))
 #clean:
-#	rm -rf $(OBJDIR) $(SO) run
+#	rm -rf $(OBJDIR) $(SO) sentence-score
 
 CC=g++
 CFLAGS=-Wall -std=c++11
@@ -57,7 +57,7 @@ OBJFILES_FOR_SO:=$(filter-out ./obj/main.obj, $(OBJFILES))
 DEPFLAGS = -MT $@ -MMD -MF $(DEPDIR)/$*.dep
 COMPILE = $(CC) $(DEPFLAGS) $(CFLAGS) -I $(INCLUDE) -c
 SO = libSentanceScore.so
-EXE = run 
+EXE = sentence-score 
 TESTPATH:=./Test/TestStopWord
 .PHONY: all
 all: $(EXE)
@@ -87,4 +87,4 @@ TestStopWord: $(SO)
 $(DEPFILES):
 include $(wildcard $(DEPFILES))
 clean:
-	rm -rf $(OBJDIR) $(SO) TestStopWord  run
+	rm -rf $(OBJDIR) $(SO) TestStopWord  sentence-score

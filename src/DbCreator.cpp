@@ -1,13 +1,16 @@
-
-#include <DbCreator.h>
-#include <HashWord.h>
-#include <Matrix.h>
-
 #include <iostream>
 #include <fstream>
 #include <cstring>
 #include <iomanip>
 #include <iterator>
+#include <DbCreator.h>
+#include <HashWord.h>
+#include <Matrix.h>
+
+/*The function reads the words from the file, performs hashing,
+ * and creates a map, the key of which is hash and the value is
+ * a vector derived from a binary representation of hash.
+ */
 
 static std::vector<long_int> sumVector(binaryVectorSize,0);
 std::map<long_int,std::vector<long_int>> DbCreator::rWord(std::string path)
@@ -33,7 +36,9 @@ std::map<long_int,std::vector<long_int>> DbCreator::rWord(std::string path)
 	ins.inspect(insHash);
 	return mp;
 }
-
+/* The function checks the words in the sentence
+ * whether the word a single word or a combination of words.
+ */
 std::vector<long_int> DbCreator::inspectWord(std::vector<std::string> line,
 		std::map<long_int,std::vector<long_int>> hashMap)
 {
@@ -74,7 +79,9 @@ std::vector<long_int> DbCreator::inspectWord(std::vector<std::string> line,
 	}
 	return resultVector;
 }
-
+/* The function checks whether the word
+ * is a stopword or not
+ */
 bool DbCreator::inspectStopWrod(std::string sentenceWord,std::string stopWDicpath) {
 	bool isfoundstopWord = false;
 	std::string pathStopDic = stopWDicpath;
@@ -91,7 +98,9 @@ bool DbCreator::inspectStopWrod(std::string sentenceWord,std::string stopWDicpat
 	}
 	return isfoundstopWord;
 }
-
+/* The function reads a sentence given from CLI and calls 
+ * the inspectStopWord/inspectWord functions.
+ */
 std::vector<long_int> DbCreator::splitStringIntoVector(std::string dicPath,
 std::string stopWDicpath)
 {
@@ -128,7 +137,10 @@ std::string stopWDicpath)
 	return resultVector;
 }
 
-std::vector<long_int> DbCreator::workingWithTests(std::string dicPath,
+/* The function tests the behavior of the function "splitStringIntoVector", by
+ * providing constant inputs from the tests.
+ */
+std::vector<long_int> DbCreator::testSplitStringFunctionality(std::string dicPath,
 std::string stopWDicpath, std::vector<std::string> testline)
 {
 	std::vector<long_int> resultVector(binaryVectorSize,0);
@@ -161,6 +173,8 @@ std::string stopWDicpath, std::vector<std::string> testline)
 	std::cout<<std::endl;
 	return resultVector;
 }
+
+/* The function calculates the sum of binary vectors*/
 std::vector<long_int> DbCreator::sumOfBinVector(std::vector<long_int> foundVector)
 {
 	int binarySum = 0;
@@ -188,8 +202,12 @@ std::vector<long_int> DbCreator::sumOfBinVector(std::vector<long_int> foundVecto
 	}
 	return sumVector;
 }
-
-std::vector<long_int> DbCreator::searchHash(std::map<long_int,std::vector<long_int>> mp,long_int hash)
+/* The function performs a hash search and calls
+ * the sumOfBinVector function once the corresponding hash is found.
+ */
+std::vector<long_int> DbCreator::searchHash(
+        std::map<long_int, std::vector<long_int>> mp
+        , long_int hash)
 {
 	std::vector<long_int> resVector(binaryVectorSize,0);
 	std::vector<long_int> binaryVector(0);

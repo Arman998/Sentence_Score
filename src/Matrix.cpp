@@ -1,6 +1,9 @@
 #include <iostream>
 #include <DbCreator.h>
 #include <Matrix.h>
+/*The function gets a binary representation from
+ * the hash and converts it to a vector
+ */
 std::vector<long_int> Matrix::bin(long_int hash)
 {
 	int binNumber = 0;
@@ -16,7 +19,7 @@ std::vector<long_int> Matrix::bin(long_int hash)
 	}
 	return binMatrix;
 }
-
+/*The function checks for the presence of a duplicate hash*/
 void Matrix::inspect(std::vector<long_int> inspectElement)
 {
 	for (unsigned int i = 0; i < inspectElement.size(); ++i) {
