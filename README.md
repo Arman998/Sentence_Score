@@ -27,7 +27,6 @@ CONTENTS
 	The main Sentence_Score directory contains the following subdirectories:
 	- data_source -  directory contains  DBtxt100.txt file.
 	- include -  directory contains DbCreator.h  HashWord.h  Matrix.h header files.
-	- Make_F - directory contains Makefile file.
 	- src - directory contains DbCreator.cpp  HashWord.cpp  main.cpp  Matrix.cpp source files.
 
 4. Installation

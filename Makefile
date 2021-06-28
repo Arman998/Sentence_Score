@@ -42,10 +42,11 @@
 #clean:
 #	rm -rf $(OBJDIR) $(SO) sentence-score
 
-CC=g++
+export LD_LIBRARY_PATH=./
+CC=LD_LIBRARY_PATH=./ g++
 CFLAGS=-Wall -std=c++11
 FPIC=-fPIC
-LDFLAGS=-shared 
+LDFLAGS=-shared  
 INCLUDE:=./include
 SRCDIR:=./src
 DEPDIR:=./obj
@@ -62,15 +63,14 @@ TESTPATH:=./Test/TestStopWord
 .PHONY: all
 all: $(EXE)
 
-$(EXE): $(OBJDIR)/main.obj $(SO)
+$(EXE): $(OBJDIR)/main.obj $(SO) 
 	$(CC) $< -o $@ -lSentanceScore -L./
 
 $(SO): $(OBJFILES_FOR_SO)
-	$(CC) $(LDFLAGS) $^ -o $(SO) $(OBJDIR/*.o)
+	$(CC) $(LDFLAGS) $^ -o  $(SO) $(OBJDIR/*.o)
 
 $(OBJDIR)/%.obj: $(SRCDIR)/%.cpp $(DEPDIR)/%.dep | $(DEPDIR)
 	$(COMPILE) $(FPIC) $< -o $@
-
 
 $(DEPDIR):
 	mkdir -p $@

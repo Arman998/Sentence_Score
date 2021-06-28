@@ -19,7 +19,8 @@ void test1(int argc, char* argv[]) {
 		}
 	}
 	if (isNotEqual) {
-		std::cout<< "## PASS ##"<< std::endl;
+		std::cout<< "## The value of all words is zero##"<< std::endl;
+		std::cout<< "##              PASS             ##"<< std::endl;
 	} else {
 		std::cout<< "## FAIL ##"<< std::endl;
 	}
