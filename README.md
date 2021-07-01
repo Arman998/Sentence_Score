@@ -31,7 +31,6 @@ CONTENTS
 
 4. Installation
 	To build the project follow to the instructions below:
-	- cd Make_f
 	- make
 
 5. Usage 
